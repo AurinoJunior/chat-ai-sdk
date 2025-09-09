@@ -12,9 +12,7 @@ export async function POST(request: NextRequest) {
     messages,
     maxSteps: 5,
     toolChoice: 'required',
-    system: `
-      Sempre responda em markdown sem aspas no início ou fim da mensagem.
-    `,
+    system: 'Sempre responda em markdown sem aspas no início ou fim da mensagem.',
   })
 
   return result.toDataStreamResponse()
