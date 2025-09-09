@@ -1,8 +1,8 @@
 import { marked } from "marked"
 import { memo, useId, useMemo } from "react"
-import ReactMarkdown, { Components } from "react-markdown"
+import ReactMarkdown, { type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
- 
+
 export type MarkdownProps = {
   children: string
   id?: string
@@ -12,7 +12,7 @@ export type MarkdownProps = {
 
 function parseMarkdownIntoBlocks(markdown: string): string[] {
   const tokens = marked.lexer(markdown)
-  return tokens.map((token) => token.raw)
+  return tokens.map(token => token.raw)
 }
 
 const MemoizedMarkdownBlock = memo(
@@ -23,11 +23,7 @@ const MemoizedMarkdownBlock = memo(
     components?: Partial<Components>
     className?: string
   }) {
-    return (
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>
-        {content}
-      </ReactMarkdown>
-    )
+    return <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
   },
   function propsAreEqual(prevProps, nextProps) {
     return prevProps.content === nextProps.content
@@ -36,20 +32,16 @@ const MemoizedMarkdownBlock = memo(
 
 MemoizedMarkdownBlock.displayName = "MemoizedMarkdownBlock"
 
-function MarkdownComponent({
-  children,
-  id,
-  className,
-}: MarkdownProps) {
+function MarkdownComponent({ children, id, className }: MarkdownProps) {
   const generatedId = useId()
   const blockId = id ?? generatedId
   const blocks = useMemo(() => parseMarkdownIntoBlocks(children), [children])
 
   return (
     <>
-      {blocks.map((block, index) => (
+      {blocks.map((block, i) => (
         <MemoizedMarkdownBlock
-          key={`${blockId}-block-${index}`}
+          key={`${blockId}-block-${String(i)}`}
           content={block}
           className={className}
         />

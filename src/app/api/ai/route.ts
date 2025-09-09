@@ -1,7 +1,7 @@
 import { openrouter } from "@/ai/open-router";
 import { tools } from "@/ai/tools";
 import { streamText } from "ai";
-import { NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 
 export async function POST(request: NextRequest) {
   const { messages } = await request.json()

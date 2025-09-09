@@ -1,4 +1,4 @@
-import { ToolCallUnion, ToolResultUnion } from "ai";
+import type { ToolCallUnion, ToolResultUnion } from "ai";
 import { githubProfile } from "./github-profile";
 import { httpFetch } from "./http-fetch";
 
