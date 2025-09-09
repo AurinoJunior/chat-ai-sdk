@@ -18,10 +18,13 @@
 			"next": "recommended"
 		},
 		"rules": {
-      "suspicious": {
-        "useIterableCallbackReturn": "off",
-        "noUnknownAtRules": "off"
-      },
+			"performance": {
+				"noImgElement": "off"
+			},
+			"suspicious": {
+				"useIterableCallbackReturn": "off",
+				"noUnknownAtRules": "off"
+			},
 			"recommended": true
 		}
 	},

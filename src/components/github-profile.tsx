@@ -1,5 +1,4 @@
 import type { GetResponseTypeFromEndpointMethod } from "@octokit/types"
-import Image from "next/image"
 import type { github } from "@/lib/octokit"
 
 type GithubUser = GetResponseTypeFromEndpointMethod<
@@ -13,7 +12,7 @@ interface GithubProfileProps {
 export function GithubProfile({ user }: GithubProfileProps) {
   return (
     <div className="bg-zinc-950 rounded-lg flex gap-3 p-6">
-      <Image
+      <img
         src={user.avatar_url}
         alt={user.name ?? ""}
         className="size-10 rounded-full"
